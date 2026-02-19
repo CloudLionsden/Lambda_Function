@@ -1,0 +1,13 @@
+flowchart TD
+    TF[Terraform Apply] --> VPC[VPC 10.10.0.0/16]
+    VPC --> SUBNET[Private Subnet 10.10.1.0/24]
+    SUBNET --> RT[Private Route Table]
+    SUBNET --> SG[Security Group Outbound 443]
+    SG --> LAMBDA[Lambda Snapshot Cleanup]
+
+    EB[EventBridge Rule rate(1 day)] --> LAMBDA
+    LAMBDA --> EC2[EC2 Snapshots API]
+    LAMBDA --> CW[CloudWatch Logs]
+
+    IAM[IAM Role + Policy] --> LAMBDA
+    VPCE[EC2 Interface VPC Endpoint] --> EC2
