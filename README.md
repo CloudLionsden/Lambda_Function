@@ -12,7 +12,7 @@ I used **Terraform** because it lets me define the VPC, subnet, IAM role, Lambda
 
 ## Overview
 This project provisions AWS infrastructure using Terraform and deploys an AWS Lambda function
-that automatically deletes EBS snapshots older than one year.
+that automatically deletes EC2 snapshots older than one year.
 
 The Lambda function runs inside a private subnet within a VPC and is triggered daily using an
 EventBridge (CloudWatch Events) scheduled rule.
